@@ -33,11 +33,16 @@ extension ViewController {
         view.addSubview(passwordTextField)
 
         NSLayoutConstraint.activate([
-            passwordTextField.centerXAnchor.constraint(
-                equalTo: view.centerXAnchor
-            ),
             passwordTextField.centerYAnchor.constraint(
                 equalTo: view.centerYAnchor
+            ),
+            passwordTextField.leadingAnchor.constraint(
+                equalTo: view.leadingAnchor,
+                constant: 16
+            ),
+            passwordTextField.trailingAnchor.constraint(
+                equalTo: view.trailingAnchor,
+                constant: -16
             ),
         ])
     }

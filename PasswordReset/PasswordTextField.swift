@@ -65,9 +65,11 @@ class PasswordTextField: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .footnote)
         label.textColor = .systemRed
-        label.text = "Enter your password"
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.8
+        label.text = "Your password must meet the requirements below."
+//        label.adjustsFontSizeToFitWidth = true
+//        label.minimumScaleFactor = 0.8
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.isHidden = false
 
         return label

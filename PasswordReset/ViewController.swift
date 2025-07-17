@@ -10,7 +10,7 @@ import UIKit
 class ViewController: UIViewController {
 
     let passwordTextField: PasswordTextField = {
-        let view = PasswordTextField()
+        let view = PasswordTextField(placeHolderText: "New Password")
 
         view.translatesAutoresizingMaskIntoConstraints = false
 

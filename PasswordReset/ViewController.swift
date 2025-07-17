@@ -9,12 +9,37 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let passwordTextField: PasswordTextField = {
+        let view = PasswordTextField()
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemPink
-    }
 
+        setupViews()
+    }
 
 }
 
+// MARK: - Helpers
+
+extension ViewController {
+
+    private func setupViews() {
+        view.addSubview(passwordTextField)
+
+        NSLayoutConstraint.activate([
+            passwordTextField.centerXAnchor.constraint(
+                equalTo: view.centerXAnchor
+            ),
+            passwordTextField.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor
+            ),
+        ])
+    }
+
+}

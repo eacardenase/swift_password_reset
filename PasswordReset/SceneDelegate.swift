@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(windowScene: scene)
         window?.rootViewController = ViewController()
+        window?.backgroundColor = .systemBackground
 
         window?.makeKeyAndVisible()
     }

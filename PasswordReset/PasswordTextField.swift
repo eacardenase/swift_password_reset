@@ -51,6 +51,27 @@ class PasswordTextField: UIView {
 
         return button
     }()
+    let dividerView: UIView = {
+        let view = UIView()
+
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .separator
+
+        return view
+    }()
+    let errorLabel: UILabel = {
+        let label = UILabel()
+
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .preferredFont(forTextStyle: .footnote)
+        label.textColor = .systemRed
+        label.text = "Enter your password"
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.8
+        label.isHidden = false
+
+        return label
+    }()
 
     // MARK: - View Lifecycle
 
@@ -67,7 +88,7 @@ class PasswordTextField: UIView {
     }
 
     override var intrinsicContentSize: CGSize {
-        CGSize(width: 200, height: 200)
+        CGSize(width: 200, height: 50)
     }
 
 }
@@ -77,11 +98,11 @@ class PasswordTextField: UIView {
 extension PasswordTextField {
 
     private func setupViews() {
-        backgroundColor = .systemOrange
-
         addSubview(lockImageView)
         addSubview(textField)
         addSubview(eyeButton)
+        addSubview(dividerView)
+        addSubview(errorLabel)
 
         // lockImageView
         NSLayoutConstraint.activate([
@@ -110,6 +131,27 @@ extension PasswordTextField {
             eyeButton.centerYAnchor.constraint(
                 equalTo: textField.centerYAnchor
             ),
+        ])
+
+        // dividerView
+        NSLayoutConstraint.activate([
+            dividerView.topAnchor.constraint(
+                equalTo: textField.bottomAnchor,
+                constant: 8
+            ),
+            dividerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            dividerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            dividerView.heightAnchor.constraint(equalToConstant: 1),
+        ])
+
+        // errorLabel
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(
+                equalTo: dividerView.bottomAnchor,
+                constant: 4
+            ),
+            errorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            errorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
         ])
     }
 

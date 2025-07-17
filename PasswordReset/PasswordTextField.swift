@@ -15,6 +15,8 @@ class PasswordTextField: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(systemName: "lock.fill")
 
+        imageView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+
         return imageView
     }()
     let placeHolderText: String
@@ -22,7 +24,6 @@ class PasswordTextField: UIView {
         let _textField = UITextField()
 
         _textField.translatesAutoresizingMaskIntoConstraints = false
-        _textField.textColor = .secondaryLabel
         _textField.isSecureTextEntry = false
         _textField.delegate = self
         _textField.keyboardType = .asciiCapable
@@ -34,6 +35,21 @@ class PasswordTextField: UIView {
         )
 
         return _textField
+    }()
+    lazy var eyeButton: UIButton = {
+        let button = UIButton(type: .custom)
+
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "eye.circle"), for: .normal)
+        button.setImage(UIImage(systemName: "eye.slash.circle"), for: .selected)
+        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        button.addTarget(
+            self,
+            action: #selector(togglePasswordView),
+            for: .touchUpInside
+        )
+
+        return button
     }()
 
     // MARK: - View Lifecycle
@@ -61,10 +77,11 @@ class PasswordTextField: UIView {
 extension PasswordTextField {
 
     private func setupViews() {
-        backgroundColor = .systemGreen
+        backgroundColor = .systemOrange
 
         addSubview(lockImageView)
         addSubview(textField)
+        addSubview(eyeButton)
 
         // lockImageView
         NSLayoutConstraint.activate([
@@ -82,6 +99,18 @@ extension PasswordTextField {
                 constant: 8
             ),
         ])
+
+        // eyeButton
+        NSLayoutConstraint.activate([
+            eyeButton.leadingAnchor.constraint(
+                equalTo: textField.trailingAnchor,
+                constant: 8
+            ),
+            eyeButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            eyeButton.centerYAnchor.constraint(
+                equalTo: textField.centerYAnchor
+            ),
+        ])
     }
 
 }
@@ -89,5 +118,16 @@ extension PasswordTextField {
 // MARK: - UITextFieldDelegate
 
 extension PasswordTextField: UITextFieldDelegate {
+
+}
+
+// MARK: - Actions
+
+extension PasswordTextField {
+
+    @objc private func togglePasswordView(_ sender: UIButton) {
+        textField.isSecureTextEntry.toggle()
+        eyeButton.isSelected.toggle()
+    }
 
 }

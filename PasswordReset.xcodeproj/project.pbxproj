@@ -6,8 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A5E1BB652E29E68B00A7DD64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A5E1BB642E29E68B00A7DD64 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A502522D2E2936D0005F2F9C /* PasswordReset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordReset.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E1BB642E29E68B00A7DD64 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +50,7 @@
 		A50252242E2936D0005F2F9C = {
 			isa = PBXGroup;
 			children = (
+				A5E1BB642E29E68B00A7DD64 /* README.md */,
 				A502522F2E2936D0005F2F9C /* PasswordReset */,
 				A502522E2E2936D0005F2F9C /* Products */,
 			);
@@ -122,6 +128,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5E1BB652E29E68B00A7DD64 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

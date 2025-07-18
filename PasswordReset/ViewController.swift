@@ -14,6 +14,18 @@ class ViewController: UIViewController {
     let confirmPasswordTextField = PasswordTextField(
         placeHolderText: "Re-enter new Password"
     )
+    lazy var resetButton: UIButton = {
+        let button = UIButton(configuration: .filled())
+
+        button.setTitle("Reset password", for: .normal)
+        button.addTarget(
+            self,
+            action: #selector(resetPasswordButtonTapped),
+            for: .touchUpInside
+        )
+
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +44,7 @@ extension ViewController {
             passwordTextField,
             statusView,
             confirmPasswordTextField,
+            resetButton,
         ])
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +66,16 @@ extension ViewController {
                 constant: -16
             ),
         ])
+    }
+
+}
+
+// MARK: - Actions
+
+extension ViewController {
+
+    @objc func resetPasswordButtonTapped(_ sender: UIButton) {
+        print(#function)
     }
 
 }

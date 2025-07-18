@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let passwordTextField = PasswordTextField(placeHolderText: "New Password")
+    let newPasswordTextField = PasswordTextField(placeHolderText: "New Password")
     let statusView = PasswordStatusView()
     let confirmPasswordTextField = PasswordTextField(
         placeHolderText: "Re-enter new Password"
@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        newPasswordTextField.delegate = self
+
         setupViews()
     }
 
@@ -41,7 +43,7 @@ extension ViewController {
 
     private func setupViews() {
         let stackView = UIStackView(arrangedSubviews: [
-            passwordTextField,
+            newPasswordTextField,
             statusView,
             confirmPasswordTextField,
             resetButton,
@@ -76,6 +78,18 @@ extension ViewController {
 
     @objc func resetPasswordButtonTapped(_ sender: UIButton) {
         print(#function)
+    }
+
+}
+
+// MARK: - PasswordTextFieldDelegate
+
+extension ViewController: PasswordTextFieldDelegate {
+
+    func editingChanged(_ sender: PasswordTextField) {
+        if sender === newPasswordTextField {
+            //
+        }
     }
 
 }

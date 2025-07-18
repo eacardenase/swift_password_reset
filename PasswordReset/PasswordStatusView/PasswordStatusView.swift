@@ -45,6 +45,8 @@ class PasswordStatusView: UIView {
         text: "special character (e.g. !@#$%^)"
     )
 
+    private var shouldResetCriteria = true
+
     // MARK: - View Lifecycle
 
     override init(frame: CGRect) {
@@ -127,6 +129,36 @@ extension PasswordStatusView {
         )
 
         return attributedText
+    }
+
+    func updateDisplay(_ text: String) {
+        let lengthAndNoSpaceMet = PasswordCriteria.lengthAndNoSpaceMet(text)
+        let uppercaseMet = PasswordCriteria.uppercaseMet(text)
+        let lowercaseMet = PasswordCriteria.lowercaseMet(text)
+        let digitMet = PasswordCriteria.digitMet(text)
+        let specialCharacterMet = PasswordCriteria.specialCharacter(text)
+
+        if shouldResetCriteria {
+            lengthAndNoSpaceMet
+                ? lengthCriteriaView.isCriteriaMet = true
+                : lengthCriteriaView.reset()
+
+            uppercaseMet
+                ? uppercaseCriteriaView.isCriteriaMet = true
+                : uppercaseCriteriaView.reset()
+
+            lowercaseMet
+                ? lowercaseCriteriaView.isCriteriaMet = true
+                : lowercaseCriteriaView.reset()
+
+            digitMet
+                ? digitCriteriaView.isCriteriaMet = true
+                : digitCriteriaView.reset()
+
+            specialCharacterMet
+                ? specialCharacterCriteriaView.isCriteriaMet = true
+                : specialCharacterCriteriaView.reset()
+        }
     }
 
 }

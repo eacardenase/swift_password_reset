@@ -9,7 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let newPasswordTextField = PasswordTextField(placeHolderText: "New Password")
+    let newPasswordTextField = PasswordTextField(
+        placeHolderText: "New Password"
+    )
     let statusView = PasswordStatusView()
     let confirmPasswordTextField = PasswordTextField(
         placeHolderText: "Re-enter new Password"
@@ -30,8 +32,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        newPasswordTextField.delegate = self
-
+        setup()
         setupViews()
     }
 
@@ -40,6 +41,17 @@ class ViewController: UIViewController {
 // MARK: - Helpers
 
 extension ViewController {
+
+    private func setup() {
+        newPasswordTextField.delegate = self
+
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard)
+        )
+
+        view.addGestureRecognizer(tapGesture)
+    }
 
     private func setupViews() {
         let stackView = UIStackView(arrangedSubviews: [
@@ -80,6 +92,10 @@ extension ViewController {
         print(#function)
     }
 
+    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
 }
 
 // MARK: - PasswordTextFieldDelegate
@@ -90,6 +106,10 @@ extension ViewController: PasswordTextFieldDelegate {
         if sender === newPasswordTextField {
             statusView.updateDisplay(sender.textField.text ?? "")
         }
+    }
+
+    func editingDidEnd(_ sender: PasswordTextField) {
+        print(sender.textField.text ?? "")
     }
 
 }

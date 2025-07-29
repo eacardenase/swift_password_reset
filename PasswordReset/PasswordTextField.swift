@@ -10,6 +10,7 @@ import UIKit
 protocol PasswordTextFieldDelegate: AnyObject {
 
     func editingChanged(_ sender: PasswordTextField)
+    func editingDidEnd(_ sender: PasswordTextField)
 
 }
 
@@ -178,6 +179,16 @@ extension PasswordTextField {
 // MARK: - UITextFieldDelegate
 
 extension PasswordTextField: UITextFieldDelegate {
+
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.editingDidEnd(self)
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+
+        return true
+    }
 
 }
 

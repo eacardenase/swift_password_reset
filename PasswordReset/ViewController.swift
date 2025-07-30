@@ -91,6 +91,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         setupViews()
+        setupKeyboardHiding()
 
         let tapGesture = UITapGestureRecognizer(
             target: self,
@@ -135,6 +136,21 @@ extension ViewController {
         ])
     }
 
+    private func setupKeyboardHiding() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
 }
 
 // MARK: - Actions
@@ -171,6 +187,20 @@ extension ViewController: PasswordTextFieldDelegate {
         statusView.shouldResetCriteria = false
 
         sender.validate()
+    }
+
+}
+
+// MARK: - Keyboard
+
+extension ViewController {
+
+    @objc private func keyboardWillShow(_ sender: NSNotification) {
+        view.frame.origin.y -= 200
+    }
+
+    @objc private func keyboardWillHide(_ sendeR: NSNotification) {
+        view.frame.origin.y = 0
     }
 
 }

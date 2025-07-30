@@ -16,6 +16,10 @@ protocol PasswordTextFieldDelegate: AnyObject {
 
 class PasswordTextField: UIView {
 
+    typealias CustomValidator = (_ textValue: String?) -> (
+        isValid: Bool, message: String
+    )?
+
     let lockImageView: UIImageView = {
         let imageView = UIImageView()
 
@@ -26,7 +30,6 @@ class PasswordTextField: UIView {
 
         return imageView
     }()
-    let placeHolderText: String
     lazy var textField: UITextField = {
         let _textField = UITextField()
 
@@ -90,7 +93,14 @@ class PasswordTextField: UIView {
         return label
     }()
 
+    let placeHolderText: String
+    var customValidator: CustomValidator?
     weak var delegate: PasswordTextFieldDelegate?
+
+    var text: String? {
+        get { textField.text }
+        set { textField.text = newValue }
+    }
 
     // MARK: - View Lifecycle
 
@@ -203,6 +213,37 @@ extension PasswordTextField {
 
     @objc func textFieldEditingChanged(_ sender: UITextField) {
         delegate?.editingChanged(self)
+    }
+
+}
+
+// MARK: - Validation
+
+extension PasswordTextField {
+ 
+    func validate() -> Bool {
+        if let customValidator = customValidator,
+            let customValidatorResult = customValidator(text),
+            !customValidatorResult.isValid
+        {
+            showError(with: customValidatorResult.message)
+
+            return false
+        }
+
+        clearError()
+
+        return true
+    }
+
+    private func showError(with errorMessage: String) {
+        errorLabel.isHidden = false
+        errorLabel.text = errorMessage
+    }
+
+    private func clearError() {
+        errorLabel.isHidden = true
+        errorLabel.text = ""
     }
 
 }

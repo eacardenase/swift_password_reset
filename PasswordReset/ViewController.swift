@@ -9,13 +9,37 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let newPasswordTextField = PasswordTextField(
-        placeHolderText: "New Password"
-    )
+    lazy var newPasswordTextField: PasswordTextField = {
+        let textField = PasswordTextField(
+            placeHolderText: "New Password"
+        )
+
+        let newPasswordValidator: PasswordTextField.CustomValidator = {
+            (text: String?) -> (Bool, String) in
+
+            guard let text = text, !text.isEmpty else {
+                self.statusView.reset()
+                return (false, "Enter your password")
+            }
+
+            return (true, "")
+        }
+
+        textField.customValidator = newPasswordValidator
+        textField.delegate = self
+
+        return textField
+    }()
     let statusView = PasswordStatusView()
-    let confirmPasswordTextField = PasswordTextField(
-        placeHolderText: "Re-enter new Password"
-    )
+    lazy var confirmPasswordTextField: PasswordTextField = {
+        let textField = PasswordTextField(
+            placeHolderText: "Re-enter new Password"
+        )
+
+        textField.delegate = self
+
+        return textField
+    }()
     lazy var resetButton: UIButton = {
         let button = UIButton(configuration: .filled())
 
@@ -32,18 +56,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setup()
         setupViews()
-    }
-
-}
-
-// MARK: - Helpers
-
-extension ViewController {
-
-    private func setup() {
-        newPasswordTextField.delegate = self
 
         let tapGesture = UITapGestureRecognizer(
             target: self,
@@ -52,6 +65,12 @@ extension ViewController {
 
         view.addGestureRecognizer(tapGesture)
     }
+
+}
+
+// MARK: - Helpers
+
+extension ViewController {
 
     private func setupViews() {
         let stackView = UIStackView(arrangedSubviews: [
@@ -104,12 +123,14 @@ extension ViewController: PasswordTextFieldDelegate {
 
     func editingChanged(_ sender: PasswordTextField) {
         if sender === newPasswordTextField {
-            statusView.updateDisplay(sender.textField.text ?? "")
+            statusView.updateDisplay(sender.text ?? "")
         }
     }
 
     func editingDidEnd(_ sender: PasswordTextField) {
-        print(sender.textField.text ?? "")
+        if sender === newPasswordTextField {
+            _ = newPasswordTextField.validate()
+        }
     }
 
 }

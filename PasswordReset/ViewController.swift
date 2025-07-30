@@ -140,6 +140,14 @@ extension ViewController {
 
 extension ViewController: PasswordTextFieldDelegate {
 
+    func editingDidBegin(_ sender: PasswordTextField) {
+        if sender === newPasswordTextField {
+            statusView.shouldResetCriteria = true
+
+            editingChanged(sender)
+        }
+    }
+
     func editingChanged(_ sender: PasswordTextField) {
         if sender === newPasswordTextField {
             statusView.updateDisplay(sender.text ?? "")
@@ -150,7 +158,7 @@ extension ViewController: PasswordTextFieldDelegate {
         if sender === newPasswordTextField {
             statusView.shouldResetCriteria = false
 
-            _ = newPasswordTextField.validate()
+            newPasswordTextField.validate()
         }
     }
 

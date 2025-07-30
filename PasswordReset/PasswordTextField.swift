@@ -9,6 +9,7 @@ import UIKit
 
 protocol PasswordTextFieldDelegate: AnyObject {
 
+    func editingDidBegin(_ sender: PasswordTextField)
     func editingChanged(_ sender: PasswordTextField)
     func editingDidEnd(_ sender: PasswordTextField)
 
@@ -190,6 +191,11 @@ extension PasswordTextField {
 
 extension PasswordTextField: UITextFieldDelegate {
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        clearError()
+        delegate?.editingDidBegin(self)
+    }
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         delegate?.editingDidEnd(self)
     }
@@ -220,7 +226,8 @@ extension PasswordTextField {
 // MARK: - Validation
 
 extension PasswordTextField {
- 
+
+    @discardableResult
     func validate() -> Bool {
         if let customValidator = customValidator,
             let customValidatorResult = customValidator(text),

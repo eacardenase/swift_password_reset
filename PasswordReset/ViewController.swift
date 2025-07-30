@@ -55,6 +55,21 @@ class ViewController: UIViewController {
             placeHolderText: "Re-enter new Password"
         )
 
+        let passwordValidator: PasswordTextField.CustomValidator = {
+            text in
+
+            guard let text = text, !text.isEmpty else {
+                return (false, "Enter your password")
+            }
+
+            guard text == self.newPasswordTextField.text else {
+                return (false, "Passwords do not match")
+            }
+
+            return (true, "")
+        }
+
+        textField.customValidator = passwordValidator
         textField.delegate = self
 
         return textField
@@ -141,11 +156,9 @@ extension ViewController {
 extension ViewController: PasswordTextFieldDelegate {
 
     func editingDidBegin(_ sender: PasswordTextField) {
-        if sender === newPasswordTextField {
-            statusView.shouldResetCriteria = true
+        statusView.shouldResetCriteria = true
 
-            editingChanged(sender)
-        }
+        editingChanged(sender)
     }
 
     func editingChanged(_ sender: PasswordTextField) {
@@ -155,11 +168,9 @@ extension ViewController: PasswordTextFieldDelegate {
     }
 
     func editingDidEnd(_ sender: PasswordTextField) {
-        if sender === newPasswordTextField {
-            statusView.shouldResetCriteria = false
+        statusView.shouldResetCriteria = false
 
-            newPasswordTextField.validate()
-        }
+        sender.validate()
     }
 
 }

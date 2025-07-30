@@ -45,7 +45,7 @@ class PasswordStatusView: UIView {
         text: "special character (e.g. !@#$%^)"
     )
 
-    private var shouldResetCriteria = true
+    var shouldResetCriteria = true
 
     // MARK: - View Lifecycle
 
@@ -158,7 +158,15 @@ extension PasswordStatusView {
             specialCharacterMet
                 ? specialCharacterCriteriaView.isCriteriaMet = true
                 : specialCharacterCriteriaView.reset()
+
+            return
         }
+
+        lengthCriteriaView.isCriteriaMet = lengthAndNoSpaceMet
+        uppercaseCriteriaView.isCriteriaMet = uppercaseMet
+        lowercaseCriteriaView.isCriteriaMet = lowercaseMet
+        digitCriteriaView.isCriteriaMet = digitMet
+        specialCharacterCriteriaView.isCriteriaMet = specialCharacterMet
     }
 
     func reset() {
@@ -167,6 +175,21 @@ extension PasswordStatusView {
         lowercaseCriteriaView.reset()
         digitCriteriaView.reset()
         specialCharacterCriteriaView.reset()
+    }
+
+    func validate(_ text: String) -> Bool {
+        let lengthAndNoSpaceMet = PasswordCriteria.lengthAndNoSpaceMet(text)
+
+        let uppercaseMet = PasswordCriteria.uppercaseMet(text)
+        let lowercaseMet = PasswordCriteria.lowercaseMet(text)
+        let digitMet = PasswordCriteria.digitMet(text)
+        let specialCharacterMet = PasswordCriteria.specialCharacter(text)
+
+        let criteriaMet = [
+            uppercaseMet, lowercaseMet, digitMet, specialCharacterMet,
+        ].filter { $0 }
+
+        return lengthAndNoSpaceMet && criteriaMet.count >= 3
     }
 
 }

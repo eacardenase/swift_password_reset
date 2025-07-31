@@ -199,15 +199,32 @@ extension ViewController {
         guard let userInfo = sender.userInfo,
             let keyboardFrame = userInfo[
                 UIResponder.keyboardFrameEndUserInfoKey
-            ] as? NSValue,
+            ] as? CGRect,
             let currentTextField = UIResponder.currentFirst() as? UITextField
         else {
             return
         }
 
         print("DEBUG: userInfo", userInfo)
-        print("DEBUG: keyboardFrame", keyboardFrame)
+        print("DEBUG: keyboardFrame: \(keyboardFrame)")
         print("DEBUG: currentTextField", currentTextField)
+
+        let keyboardTopY = keyboardFrame.origin.y
+        let convertedTextFieldFrame = view.convert(
+            currentTextField.frame,
+            from: currentTextField.superview
+        )
+
+        let textFieldBottomY =
+            convertedTextFieldFrame.origin.y
+            + convertedTextFieldFrame.size.height
+
+        if textFieldBottomY > keyboardTopY {
+            print("DEBUG: Adjust view!")
+        }
+
+        print("DEBUG: currentTextFieldFrame: \(currentTextField.frame)")
+        print("DEBUG: convertedTextFieldFrame: \(convertedTextFieldFrame)")
     }
 
     @objc private func keyboardWillHide(_ sendeR: NSNotification) {

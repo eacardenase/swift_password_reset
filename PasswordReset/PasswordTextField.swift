@@ -38,7 +38,7 @@ class PasswordTextField: UIView {
         _textField.isSecureTextEntry = false
         _textField.delegate = self
         _textField.keyboardType = .asciiCapable
-        _textField.autocorrectionType = .no
+        _textField.autocorrectionType = .yes
         _textField.autocapitalizationType = .none
         _textField.attributedPlaceholder = NSAttributedString(
             string: placeHolderText,

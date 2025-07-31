@@ -250,3 +250,19 @@ extension ViewController {
     }
 
 }
+
+// MARK: - Tests
+
+extension ViewController {
+
+    var newPasswordText: String? {
+        get { newPasswordTextField.text }
+        set { newPasswordTextField.text = newValue }
+    }
+
+    var confirmPasswordText: String? {
+        get { confirmPasswordTextField.text }
+        set { confirmPasswordTextField.text = newValue }
+    }
+
+}

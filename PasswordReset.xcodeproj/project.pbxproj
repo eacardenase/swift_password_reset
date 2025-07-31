@@ -10,8 +10,19 @@
 		A5E1BB652E29E68B00A7DD64 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A5E1BB642E29E68B00A7DD64 /* README.md */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A56EFB362E3BC31100F8BE2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A50252252E2936D0005F2F9C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A502522C2E2936D0005F2F9C;
+			remoteInfo = PasswordReset;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A502522D2E2936D0005F2F9C /* PasswordReset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PasswordReset.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56EFB322E3BC31100F8BE2F /* PasswordResetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasswordResetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E1BB642E29E68B00A7DD64 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -34,10 +45,22 @@
 			path = PasswordReset;
 			sourceTree = "<group>";
 		};
+		A56EFB332E3BC31100F8BE2F /* PasswordResetTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PasswordResetTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A502522A2E2936D0005F2F9C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A56EFB2F2E3BC31100F8BE2F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -52,6 +75,7 @@
 			children = (
 				A5E1BB642E29E68B00A7DD64 /* README.md */,
 				A502522F2E2936D0005F2F9C /* PasswordReset */,
+				A56EFB332E3BC31100F8BE2F /* PasswordResetTests */,
 				A502522E2E2936D0005F2F9C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				A502522D2E2936D0005F2F9C /* PasswordReset.app */,
+				A56EFB322E3BC31100F8BE2F /* PasswordResetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,6 +114,29 @@
 			productReference = A502522D2E2936D0005F2F9C /* PasswordReset.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A56EFB312E3BC31100F8BE2F /* PasswordResetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A56EFB382E3BC31100F8BE2F /* Build configuration list for PBXNativeTarget "PasswordResetTests" */;
+			buildPhases = (
+				A56EFB2E2E3BC31100F8BE2F /* Sources */,
+				A56EFB2F2E3BC31100F8BE2F /* Frameworks */,
+				A56EFB302E3BC31100F8BE2F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A56EFB372E3BC31100F8BE2F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A56EFB332E3BC31100F8BE2F /* PasswordResetTests */,
+			);
+			name = PasswordResetTests;
+			packageProductDependencies = (
+			);
+			productName = PasswordResetTests;
+			productReference = A56EFB322E3BC31100F8BE2F /* PasswordResetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -101,6 +149,11 @@
 				TargetAttributes = {
 					A502522C2E2936D0005F2F9C = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					A56EFB312E3BC31100F8BE2F = {
+						CreatedOnToolsVersion = 16.4;
+						LastSwiftMigration = 1640;
+						TestTargetID = A502522C2E2936D0005F2F9C;
 					};
 				};
 			};
@@ -119,6 +172,7 @@
 			projectRoot = "";
 			targets = (
 				A502522C2E2936D0005F2F9C /* PasswordReset */,
+				A56EFB312E3BC31100F8BE2F /* PasswordResetTests */,
 			);
 		};
 /* End PBXProject section */
@@ -132,6 +186,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A56EFB302E3BC31100F8BE2F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -142,7 +203,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A56EFB2E2E3BC31100F8BE2F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A56EFB372E3BC31100F8BE2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A502522C2E2936D0005F2F9C /* PasswordReset */;
+			targetProxy = A56EFB362E3BC31100F8BE2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A50252412E2936D2005F2F9C /* Debug */ = {
@@ -320,6 +396,45 @@
 			};
 			name = Release;
 		};
+		A56EFB392E3BC31100F8BE2F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DZDWNPN8YP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eacardenase.PasswordResetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasswordReset.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PasswordReset";
+			};
+			name = Debug;
+		};
+		A56EFB3A2E3BC31100F8BE2F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DZDWNPN8YP;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.eacardenase.PasswordResetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PasswordReset.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PasswordReset";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -337,6 +452,15 @@
 			buildConfigurations = (
 				A50252412E2936D2005F2F9C /* Debug */,
 				A50252422E2936D2005F2F9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A56EFB382E3BC31100F8BE2F /* Build configuration list for PBXNativeTarget "PasswordResetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A56EFB392E3BC31100F8BE2F /* Debug */,
+				A56EFB3A2E3BC31100F8BE2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

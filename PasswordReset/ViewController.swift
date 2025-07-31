@@ -151,6 +151,18 @@ extension ViewController {
         )
     }
 
+    private func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+
+        present(alertController, animated: true)
+    }
+
 }
 
 // MARK: - Actions
@@ -158,7 +170,17 @@ extension ViewController {
 extension ViewController {
 
     @objc func resetPasswordButtonTapped(_ sender: UIButton) {
-        print(#function)
+        view.endEditing(true)
+
+        let isValidNewPassword = newPasswordTextField.validate()
+        let isValidConfirmPassword = confirmPasswordTextField.validate()
+
+        if isValidNewPassword && isValidConfirmPassword {
+            showAlert(
+                title: "Success",
+                message: "You have successfully changed your password."
+            )
+        }
     }
 
     @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {

@@ -86,6 +86,9 @@ class ViewController: UIViewController {
 
         return button
     }()
+    var alertController: UIAlertController?
+
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -152,11 +155,13 @@ extension ViewController {
     }
 
     private func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(
+        alertController = UIAlertController(
             title: title,
             message: message,
             preferredStyle: .alert
         )
+
+        guard let alertController else { return }
 
         alertController.addAction(UIAlertAction(title: "OK", style: .default))
 

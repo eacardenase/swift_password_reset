@@ -111,3 +111,43 @@ class ViewControllerTests_Confirm_Password_Validation: XCTestCase {
     }
 
 }
+
+class ViewControllerTests_Show_Alert: XCTestCase {
+
+    var vc: ViewController!
+
+    let validPassword = "12345678Aa!"
+    let invalidPassword = "1234Aa!"
+
+    override func setUp() {
+        super.setUp()
+
+        vc = ViewController()
+    }
+
+    func testShowSuccess() throws {
+        vc.newPasswordText = validPassword
+        vc.confirmPasswordText = validPassword
+
+        vc.resetPasswordButtonTapped(UIButton())
+
+        XCTAssertNotNil(vc.alertController)
+
+        // Optional
+        XCTAssertEqual(vc.alertController!.title, "Success")
+        XCTAssertEqual(
+            vc.alertController!.message,
+            "You have successfully changed your password."
+        )
+    }
+
+    func testShowError() throws {
+        vc.newPasswordText = validPassword
+        vc.confirmPasswordText = invalidPassword
+
+        vc.resetPasswordButtonTapped(UIButton())
+
+        XCTAssertNil(vc.alertController)
+    }
+
+}

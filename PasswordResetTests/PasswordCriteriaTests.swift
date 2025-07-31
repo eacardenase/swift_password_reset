@@ -9,7 +9,7 @@ import XCTest
 
 @testable import PasswordReset
 
-class PasswordCriteriaTests: XCTestCase {
+class PasswordLengthCriteriaTests: XCTestCase {
 
     func testShort() throws {
         XCTAssertFalse(PasswordCriteria.lengthCriteriaMet("1234567"))
@@ -33,6 +33,58 @@ class PasswordCriteriaTests: XCTestCase {
                 "12345671234567123456712345671234"
             )
         )
+    }
+
+}
+
+class PasswordOtherCriteriaTests: XCTestCase {
+
+    func testSpaceMet() throws {
+        XCTAssertTrue(PasswordCriteria.noSpaceCriteriaMet("abc"))
+    }
+
+    func testSpaceNotMet() throws {
+        XCTAssertFalse(PasswordCriteria.noSpaceCriteriaMet("a bc"))
+    }
+    
+    func testLenghtAndNoSpaceMet() throws {
+        XCTAssertTrue(PasswordCriteria.lengthAndNoSpaceMet("12345678"))
+    }
+    
+    func testLengthAndNoSpaceNotMet() throws {
+        XCTAssertFalse(PasswordCriteria.lengthAndNoSpaceMet("123 5678"))
+    }
+    
+    func testUppercaseMet() throws {
+        XCTAssertTrue(PasswordCriteria.uppercaseMet("Abc"))
+    }
+    
+    func testUppercaseNotMet() throws {
+        XCTAssertFalse(PasswordCriteria.uppercaseMet("abc"))
+    }
+    
+    func testLowercaseMet() throws {
+        XCTAssertTrue(PasswordCriteria.lowercaseMet("abc"))
+    }
+    
+    func testLowercaseNotMet() throws {
+        XCTAssertFalse(PasswordCriteria.lowercaseMet("ABC"))
+    }
+    
+    func testDigitMet() throws {
+        XCTAssertTrue(PasswordCriteria.digitMet("abc1"))
+    }
+    
+    func testDigitNotMet() throws {
+        XCTAssertFalse(PasswordCriteria.digitMet("abc"))
+    }
+    
+    func testSpecialCharacterMet() throws {
+        XCTAssertTrue(PasswordCriteria.specialCharacter("abc!"))
+    }
+    
+    func testSpecialCharacterNotMet() throws {
+        XCTAssertFalse(PasswordCriteria.specialCharacter("abc"))
     }
 
 }
